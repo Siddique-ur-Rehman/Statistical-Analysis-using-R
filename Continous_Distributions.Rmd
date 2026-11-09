@@ -1,0 +1,165 @@
+---
+title: "continous_probability"
+author: "Siddique ur Rehman"
+date: "2026-11-05"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#density at 5
+dunif(5,min=0,max=10)
+punif(5,min=0,max=10)
+qunif(0.95,min=0,max = 10)
+random_numbers=runif(10,min = 0,max = 10)
+random_numbers
+
+
+
+library(ggplot2)
+
+x<-seq(0,10,length.out=1000)
+pdf<-dunif(x,min=0,max = 10)
+
+unfirom_data<-data.frame(
+  x=x,
+  pdf=pdf
+)
+
+ggplot(unfirom_data,aes(x,pdf))+
+  geom_line(colour = 'blue',linewidth = 2)+
+  labs(
+    x="x values",
+    y="pdf",
+    title = "Main pdf of uniform ditribution"
+  )+
+  theme_minimal()
+
+```
+```{r}
+
+cdf<-punif(x,min = 0,max = 10)
+uniform_cdf<-data.frame(
+  x=x,
+  cdf=cdf
+)
+ggplot(uniform_cdf,aes(x,cdf))+
+  geom_line(colour = 'blue',linewidth = 2)+
+  labs(
+    x="x values",
+    y="cdf",
+    title = "Main pdf of uniform ditribution"
+  )+
+  theme_minimal()
+
+
+
+```
+
+```{r}
+dnorm(60,mean = 50,sd=10)
+pnorm(60,mean=50,sd=10)
+pnorm(60,mean=50,sd=10)
+qnorm(0.95,mean = 50,sd=10)
+rnorm(10,mean=50,sd=10)
+x<-60
+curve(dnorm(x,mean=50,sd=10),
+      from = 10,to=90)
+library(ggplot2)
+x_values<-seq(10,90,length.out=1000)
+pdf_norm<-dnorm(x_values,mean = 50,sd=10)
+my_data<-data.frame(
+  x=x_values,
+  pdf_norm=pdf_norm
+)
+ggplot(my_data,aes(x,pdf_norm))+
+  geom_line(color='blue',linewidth=1.2)+
+  labs(
+    x="x-axis values",
+    y="normal curve things"
+  )
+
+```
+```{r}
+
+dnorm(1.96)
+pnorm(1.96)
+pnorm(1.96,lower.tail = FALSE)
+qnorm(0.976)
+rnorm(10)
+
+std_norm<-seq(-4,4,length.out=1000)
+pdf_std_norm<-dnorm(std_norm)
+std_data<-data.frame(
+  x=std_norm,
+  pdf=pdf_std_norm
+)
+ggplot(std_data,aes(x,pdf))+
+  geom_line(color='green',linewidth = 1.2)+
+  labs(
+    x="X axis",
+    y="y axis ",
+    title = "Main standered normal distribution"
+  )
+
+```
+
+```{r}
+std_norm<-seq(-4,4,length.out=1000)
+cdf_std_norm<-pnorm(std_norm)
+std_data<-data.frame(
+  x=std_norm,
+  cdf=cdf_std_norm
+)
+ggplot(std_data,aes(x,cdf))+
+  geom_line(color='green',linewidth = 1.2)+
+  labs(
+    x="X axis",
+    y="y axis ",
+    title = "Main standered normal distribution"
+  )
+
+```
+
+```{r}
+##Checking normality
+```
+
+```{r}
+datasets::mtcars
+
+disp_col<-mtcars$disp
+hist(disp_col)
+
+```
+```{r}
+qqnorm(disp_col,main = "Normal Q-Q Plot")
+qqline(disp_col, col = "red", lwd = 2)
+```
+```{r}
+shapiro.test(disp_col)
+
+```
+```{r}
+library(nortest)
+
+ad.test(disp_col)
+```
+
+```{r}
+
+
+population<-1:100
+
+simple_random<-sample(population,10,replace = FALSE)
+print(simple_random)
+```
+
+
+
+
